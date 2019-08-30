@@ -1,8 +1,8 @@
 public class A {
-    public String catygory;
+    public String name;
     public String value;
-    public A(String catygory, String value){
-        this.catygory = catygory;
+    public A(String name, String value){
+        this.name = name;
         this.value = value;
     }
 }
