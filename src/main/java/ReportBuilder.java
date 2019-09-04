@@ -9,23 +9,22 @@ public class ReportBuilder {
         OutputStream outputStream = new FileOutputStream("MyReport.txt");
         PrintWriter writer = new PrintWriter(outputStream);
         for (int i = 0; i < category.size(); i++) {
-            if (i != category.size() - 1) {
-                writer.print(category.get(i) + ";");
+            writer.print(category.get(i));
+            if (i == category.size() - 1) {
+                writer.println();
             } else {
-                writer.println(category.get(i));
+                writer.print(";");
             }
         }
         for (int i = 0; i < listA.size(); i++) {
             for (int j = 0; j < listA.get(i).size(); j++) {
-                if (i == listA.size() - 1 && j == listA.get(listA.size() - 1).size() - 1) {
-                    writer.print(listA.get(i).get(j).value);
-                } else {
-                    if (j != listA.get(i).size() - 1) {
-                        writer.print(listA.get(i).get(j).value + ";");
-                    } else {
-                        writer.println(listA.get(i).get(j).value);
-                    }
+                writer.print(listA.get(i).get(j).value);
+                if (j != listA.size() - 1) {
+                    writer.print(";");
                 }
+            }
+            if (i != listA.size() - 1) {
+                writer.println();
             }
         }
         writer.close();
