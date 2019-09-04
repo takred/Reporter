@@ -6,31 +6,31 @@ import java.util.stream.Collectors;
 public class Main {
 //    public List<List<A>> listA(String fileName){}
     public static void main(String[] args) throws IOException {
-        List<List<A>> listsA = new ArrayList<List<A>>();
-        List<A> listA = new ArrayList<A>();
-        A a = new A("year", "1998");
-        listA.add(a);
-        a = new A("name", "audi");
-        listA.add(a);
-        a = new A("price", "50000");
-        listA.add(a);
-        listsA.add(listA);
-        listA = new ArrayList<A>();
-        a = new A("year", "2001");
-        listA.add(a);
-        a = new A("name", "mercedes");
-        listA.add(a);
-        a = new A("price", "200000");
-        listA.add(a);
-        listsA.add(listA);
-        listA = new ArrayList<A>();
-        a = new A("year", "2008");
-        listA.add(a);
-        a = new A("name", "kea");
-        listA.add(a);
-        a = new A("price", "780000");
-        listA.add(a);
-        listsA.add(listA);
+        List<List<Cell>> listsA = new ArrayList<List<Cell>>();
+        List<Cell> listCell = new ArrayList<Cell>();
+        Cell cell = new Cell("year", "1998");
+        listCell.add(cell);
+        cell = new Cell("name", "audi");
+        listCell.add(cell);
+        cell = new Cell("price", "50000");
+        listCell.add(cell);
+        listsA.add(listCell);
+        listCell = new ArrayList<Cell>();
+        cell = new Cell("year", "2001");
+        listCell.add(cell);
+        cell = new Cell("name", "mercedes");
+        listCell.add(cell);
+        cell = new Cell("price", "200000");
+        listCell.add(cell);
+        listsA.add(listCell);
+        listCell = new ArrayList<Cell>();
+        cell = new Cell("year", "2008");
+        listCell.add(cell);
+        cell = new Cell("name", "kea");
+        listCell.add(cell);
+        cell = new Cell("price", "780000");
+        listCell.add(cell);
+        listsA.add(listCell);
         List<String> strings = new ArrayList<>();
         File file = new File("settings.csv");
         if (!file.exists()){
@@ -55,22 +55,22 @@ public class Main {
 //        for (int i = 0; i < settingsBuilder.settings.size(); i++) {
 //            System.out.println(settingsBuilder.settings.get(i));
 //        }
-        List<List<A>> formatSettings = new ArrayList<>();
+        List<List<Cell>> formatSettings = new ArrayList<>();
         for (int i = 1; i < dataBuilder.categoryList.size(); i++) {
-            List<A> templateListA = new ArrayList<>();
+            List<Cell> templateListCell = new ArrayList<>();
             for (int k = 0; k < settingsBuilder.settings.size(); k++) {
                 for (int j = 0; j < dataBuilder.categoryList.get(i).size(); j++) {
                     if (settingsBuilder.settings.get(k).equals(dataBuilder.categoryList.get(0).get(j)) &&
-                            templateListA.size() < settingsBuilder.settings.size()) {
+                            templateListCell.size() < settingsBuilder.settings.size()) {
 //                        System.out.println(settingsBuilder.settings.get(k) + " - категория которая сравнивается");
 //                        System.out.println(dataBuilder.categoryList.get(0).get(j)+ " - категория с которой сравнивают");
-                        templateListA.add(new A(settingsBuilder.settings.get(k), dataBuilder.categoryList.get(i).get(j)));
+                        templateListCell.add(new Cell(settingsBuilder.settings.get(k), dataBuilder.categoryList.get(i).get(j)));
                         break;
                     }
                 }
             }
 //            System.out.println("Один раз!");
-            formatSettings.add(templateListA);
+            formatSettings.add(templateListCell);
         }
 //        for (int i = 0; i < formatSettings.size(); i++) {
 //            for (int j = 0; j < formatSettings.get(i).size(); j++) {

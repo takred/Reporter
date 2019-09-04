@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 public class ReportBuilder {
-    public void saveReport(List<List<A>> listA, List<String> category) throws FileNotFoundException {
+    public void saveReport(List<List<Cell>> listA, List<String> category) throws FileNotFoundException {
         OutputStream outputStream = new FileOutputStream("MyReport.txt");
         PrintWriter writer = new PrintWriter(outputStream);
         for (int i = 0; i < category.size(); i++) {
