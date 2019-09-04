@@ -55,9 +55,6 @@ public class ReportBuilder {
                         writer.print(" ");
                     }
                 }
-//                if (j != listCell.size() - 1) {
-//                    writer.print("|");
-//                }
             }
             writer.print("|");
             writer.println();
