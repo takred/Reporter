@@ -20,7 +20,7 @@ public class Main {
         DataBuilder dataBuilder = new DataBuilder("data.csv");
         SettingsBuilder settingsBuilder = new SettingsBuilder("settings.csv");
         List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
-        reportBuilder.saveReport(formatSettings, strings);
+        reportBuilder.newSaveReport(formatSettings, strings);
     }
 
     private static List<List<Cell>> getLists(DataBuilder dataBuilder, SettingsBuilder settingsBuilder) {
