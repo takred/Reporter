@@ -16,11 +16,13 @@ public class Main {
             strings = bufferedReader.lines().collect(Collectors.toList());
             inputStream.close();
         }
+//        NewReportBuilder newReportBuilder = new NewReportBuilder();
         ReportBuilder reportBuilder = new ReportBuilder();
         DataBuilder dataBuilder = new DataBuilder("data.csv");
         SettingsBuilder settingsBuilder = new SettingsBuilder("settings.csv");
         List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
-        reportBuilder.newSaveReport(formatSettings, strings);
+        reportBuilder.saveReport(formatSettings, strings);
+//        newReportBuilder.saveReport(formatSettings, strings);
     }
 
     private static List<List<Cell>> getLists(DataBuilder dataBuilder, SettingsBuilder settingsBuilder) {
