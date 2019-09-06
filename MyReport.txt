@@ -1,4 +1,4 @@
-year;name;price
+year;4;name;4;price;5
 1998;audi;50000
 2001;mercedes;200000
 2008;kea;780000

@@ -1,12 +1,11 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SettingsBuilder {
-    List<String> settings = new ArrayList<>();
+public class MultiLineSettingsBuilder {
+    Header header = new Header();
 
-    public SettingsBuilder(String fileName) throws IOException {
+    public MultiLineSettingsBuilder(String fileName) throws IOException {
         File file = new File(fileName);
         if (!file.exists()) {
             System.out.println("no");
@@ -15,14 +14,11 @@ public class SettingsBuilder {
             Reader reader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(reader);
             List<String> strings = bufferedReader.lines().collect(Collectors.toList());
-            if (strings.get(0).contains(";")) {
-                for (int i = 0; i < strings.size(); i++) {
-                    settings.add(strings.get(i).substring(0, strings.get(i).indexOf(";")));
-                }
-            } else {
-                settings = bufferedReader.lines().collect(Collectors.toList());
+            for (int i = 0; i < strings.size(); i++) {
+                header.addName(strings.get(i).substring(0, strings.get(i).indexOf(";")));
+                header.addWidthSpeaker(Integer.valueOf(strings.get(i).substring(strings.get(i).indexOf(";") + 1)));
+                inputStream.close();
             }
-            inputStream.close();
         }
     }
 }

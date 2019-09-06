@@ -23,7 +23,12 @@ public class Main {
         List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
         reportBuilder.saveReport(formatSettings, strings);
 //        newReportBuilder.saveReport(formatSettings, strings);
+        MultiLineSettingsBuilder multiLineSettingsBuilder = new MultiLineSettingsBuilder("settings.csv");
+        List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder,multiLineSettingsBuilder);
+        MultiLineReportBuilder multiLineReportBuilder = new MultiLineReportBuilder();
+        multiLineReportBuilder.saveReport(multiLineFormatSetting, multiLineSettingsBuilder);
     }
+
 
     private static List<List<Cell>> getLists(DataBuilder dataBuilder, SettingsBuilder settingsBuilder) {
         List<List<Cell>> formatSettings = new ArrayList<>();
@@ -34,6 +39,24 @@ public class Main {
                     if (settingsBuilder.settings.get(k).equals(dataBuilder.categoryList.get(0).get(j)) &&
                             templateListCell.size() < settingsBuilder.settings.size()) {
                         templateListCell.add(new Cell(settingsBuilder.settings.get(k), dataBuilder.categoryList.get(i).get(j)));
+                        break;
+                    }
+                }
+            }
+            formatSettings.add(templateListCell);
+        }
+        return formatSettings;
+    }
+
+    private static List<List<Cell>> getMultiLineLists(DataBuilder dataBuilder, MultiLineSettingsBuilder settingsBuilder) {
+        List<List<Cell>> formatSettings = new ArrayList<>();
+        for (int i = 1; i < dataBuilder.categoryList.size(); i++) {
+            List<Cell> templateListCell = new ArrayList<>();
+            for (int k = 0; k < settingsBuilder.header.getName().size(); k++) {
+                for (int j = 0; j < dataBuilder.categoryList.get(i).size(); j++) {
+                    if (settingsBuilder.header.getName().get(k).equals(dataBuilder.categoryList.get(0).get(j)) &&
+                            templateListCell.size() < settingsBuilder.header.getName().size()) {
+                        templateListCell.add(new Cell(settingsBuilder.header.getName().get(k), dataBuilder.categoryList.get(i).get(j)));
                         break;
                     }
                 }
