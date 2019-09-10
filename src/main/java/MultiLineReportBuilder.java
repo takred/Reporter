@@ -33,13 +33,25 @@ public class MultiLineReportBuilder {
         writer.println("");
 
         for (int i = 0; i < listCell.size(); i++) {
+            List<MultiLineCell> hyphenation = new ArrayList<>();
+            for (int k = 0; k < listCell.get(i).size(); k++) {
+                hyphenation.add(new MultiLineCell(listCell.get(i).get(k)));
+            }
             for (int j = 0; j < listCell.get(i).size(); j++) {
-                if (listCell.get(i).get(j).value.length() > category.header.getWidthSpeaker().get(j)){
+//                System.out.println(listCell.get(i).size());
+
+//                for (int l = 0; l < hyphenation.size(); l++) {
+//                    System.out.println(hyphenation.get(l).getCell().value);
+//                    System.out.println(hyphenation.get(l).getCell().name);
+//                }
+                if (listCell.get(i).get(j).value.length() > category.header.getWidthSpeaker().get(j)) {
                     writer.print("| " + listCell.get(i).get(j).value.substring(0, category.header.getWidthSpeaker().get(j)) + " ");
+                    hyphenation.get(j).setCellValue(listCell.get(i).get(j).value.substring(category.header.getWidthSpeaker().get(j)));
+                    hyphenation.get(j).setCounter(1);
                 } else {
                     writer.print("| " + listCell.get(i).get(j).value + " ");
                 }
-                if (category.header.getWidthSpeaker().get(j) > listCell.get(i).get(j).value.length()){
+                if (category.header.getWidthSpeaker().get(j) > listCell.get(i).get(j).value.length()) {
                     for (int k = 0; k < category.header.getWidthSpeaker().get(j) - listCell.get(i).get(j).value.length(); k++) {
                         writer.print(" ");
                     }
@@ -49,6 +61,38 @@ public class MultiLineReportBuilder {
                         writer.print(" ");
                     }
                 }
+//                while (counterCheck(hyphenation)) {
+//                    for (int k = 0; k < hyphenation.size(); k++) {
+//                        for (int l = 0; l < hyphenation.size(); l++) {
+//                            System.out.println(hyphenation.get(l).getCell().value);
+//                            System.out.println(hyphenation.get(l).getCell().name);
+//                        }
+//                        System.out.println("Всё");
+//                        if (hyphenation.get(k).getCounter() > 0) {
+//                            if (hyphenation.get(k).getCell().value.length() > category.header.getWidthSpeaker().get(k)) {
+//                                writer.print("| " + hyphenation.get(k).getCell().value.substring(0, category.header.getWidthSpeaker().get(k)) + " ");
+//                                hyphenation.get(k).setCellValue(listCell.get(i).get(k).value.substring(category.header.getWidthSpeaker().get(k)));
+//                                hyphenation.get(k).setCounter(1);
+//                            } else {
+//                                writer.print("| " + hyphenation.get(j).getCell().value + " ");
+//                                hyphenation.get(k).setCounter(0);
+//                            }
+//                        } else {
+//                            writer.print("| ");
+//                            for (int l = 0; l < category.header.getWidthSpeaker().get(k); l++) {
+//                                writer.print(" ");
+//                            }
+//                            writer.print(" |");
+//                        }
+//                        if(k == hyphenation.size() - 1){
+//                            writer.println(" |");
+//                        }
+//                    }
+//                    System.out.println("мда");
+////                    if (!counterCheck(hyphenation)) {
+////                        break;
+////                    }
+//                }
             }
             writer.print("|");
             writer.println();
@@ -76,5 +120,14 @@ public class MultiLineReportBuilder {
             maxLength.add(count);
         }
         return maxLength;
+    }
+
+    public boolean counterCheck(List<MultiLineCell> hyphenation) {
+        for (int i = 0; i < hyphenation.size(); i++) {
+            if (hyphenation.get(i).getCounter() > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

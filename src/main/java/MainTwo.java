@@ -3,33 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        List<String> strings = new ArrayList<>();
-        File file = new File("settings.csv");
-        if (!file.exists()) {
-            System.out.println("no");
-        } else {
-            InputStream inputStream = new FileInputStream(file);
-            Reader reader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            strings = bufferedReader.lines().collect(Collectors.toList());
-            inputStream.close();
-        }
-//        NewReportBuilder newReportBuilder = new NewReportBuilder();
-        ReportBuilder reportBuilder = new ReportBuilder();
-        DataBuilder dataBuilder = new DataBuilder("data.csv");
-        SettingsBuilder settingsBuilder = new SettingsBuilder("settings.csv");
-        List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
-        reportBuilder.saveReport(formatSettings, strings);
-//        newReportBuilder.saveReport(formatSettings, strings);
-        MultiLineSettingsBuilder multiLineSettingsBuilder = new MultiLineSettingsBuilder("settings.csv");
-        List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder,multiLineSettingsBuilder);
-        MultiLineReportBuilder2 multiLineReportBuilder = new MultiLineReportBuilder2();
-        multiLineReportBuilder.saveReport(multiLineFormatSetting, multiLineSettingsBuilder);
-    }
-
-
+public class MainTwo {
     private static List<List<Cell>> getLists(DataBuilder dataBuilder, SettingsBuilder settingsBuilder) {
         List<List<Cell>> formatSettings = new ArrayList<>();
         for (int i = 1; i < dataBuilder.categoryList.size(); i++) {
@@ -64,5 +38,31 @@ public class Main {
             formatSettings.add(templateListCell);
         }
         return formatSettings;
+    }
+
+    public static void main(String[] args) throws IOException {
+        List<String> strings = new ArrayList<>();
+        File file = new File("settings.csv");
+        if (!file.exists()) {
+            System.out.println("no");
+        } else {
+            InputStream inputStream = new FileInputStream(file);
+            Reader reader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            strings = bufferedReader.lines().collect(Collectors.toList());
+            inputStream.close();
+        }
+        ReportBuilder reportBuilder = new ReportBuilder();
+        DataBuilder dataBuilder = new DataBuilder("data.csv");
+        SettingsBuilder settingsBuilder = new SettingsBuilder("settings.csv");
+        List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
+        reportBuilder.saveReport(formatSettings, strings);
+        MultiLineSettingsBuilder multiLineSettingsBuilder = new MultiLineSettingsBuilder("settings.csv");
+        List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder, multiLineSettingsBuilder);
+        Divider divider = new Divider();
+        List<String> listStrings = divider.getWriteString(multiLineFormatSetting.get(1), multiLineSettingsBuilder);
+        for (int i = 0; i < listStrings.size(); i++) {
+            System.out.println(listStrings.get(i));
+        }
     }
 }
