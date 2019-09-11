@@ -17,11 +17,11 @@ public class Main {
             inputStream.close();
         }
 //        NewReportBuilder newReportBuilder = new NewReportBuilder();
-        ReportBuilder reportBuilder = new ReportBuilder();
+//        ReportBuilder reportBuilder = new ReportBuilder();
         DataBuilder dataBuilder = new DataBuilder("data.csv");
         SettingsBuilder settingsBuilder = new SettingsBuilder("settings.csv");
         List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
-        reportBuilder.saveReport(formatSettings, strings);
+//        reportBuilder.saveReport(formatSettings, strings);
 //        newReportBuilder.saveReport(formatSettings, strings);
         MultiLineSettingsBuilder multiLineSettingsBuilder = new MultiLineSettingsBuilder("settings.csv");
         List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder,multiLineSettingsBuilder);
@@ -52,11 +52,11 @@ public class Main {
         List<List<Cell>> formatSettings = new ArrayList<>();
         for (int i = 1; i < dataBuilder.categoryList.size(); i++) {
             List<Cell> templateListCell = new ArrayList<>();
-            for (int k = 0; k < settingsBuilder.header.getName().size(); k++) {
+            for (int k = 0; k < settingsBuilder.getHeader().getName().size(); k++) {
                 for (int j = 0; j < dataBuilder.categoryList.get(i).size(); j++) {
-                    if (settingsBuilder.header.getName().get(k).equals(dataBuilder.categoryList.get(0).get(j)) &&
-                            templateListCell.size() < settingsBuilder.header.getName().size()) {
-                        templateListCell.add(new Cell(settingsBuilder.header.getName().get(k), dataBuilder.categoryList.get(i).get(j)));
+                    if (settingsBuilder.getHeader().getName().get(k).equals(dataBuilder.categoryList.get(0).get(j)) &&
+                            templateListCell.size() < settingsBuilder.getHeader().getName().size()) {
+                        templateListCell.add(new Cell(settingsBuilder.getHeader().getName().get(k), dataBuilder.categoryList.get(i).get(j)));
                         break;
                     }
                 }

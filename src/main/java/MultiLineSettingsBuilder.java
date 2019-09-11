@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MultiLineSettingsBuilder {
-    Header header = new Header();
+    private Header header = new Header();
 
     public MultiLineSettingsBuilder(String fileName) throws IOException {
         File file = new File(fileName);
@@ -15,10 +15,14 @@ public class MultiLineSettingsBuilder {
             BufferedReader bufferedReader = new BufferedReader(reader);
             List<String> strings = bufferedReader.lines().collect(Collectors.toList());
             for (int i = 0; i < strings.size(); i++) {
-                header.addName(strings.get(i).substring(0, strings.get(i).indexOf(";")));
-                header.addWidthSpeaker(Integer.valueOf(strings.get(i).substring(strings.get(i).indexOf(";") + 1)));
+                getHeader().addName(strings.get(i).substring(0, strings.get(i).indexOf(";")));
+                getHeader().addWidthSpeaker(Integer.valueOf(strings.get(i).substring(strings.get(i).indexOf(";") + 1)));
                 inputStream.close();
             }
         }
+    }
+
+    public Header getHeader() {
+        return header;
     }
 }
