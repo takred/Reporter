@@ -26,6 +26,8 @@ public class Main {
         MultiLineSettingsBuilder multiLineSettingsBuilder = new MultiLineSettingsBuilder("settings.csv");
         List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder,multiLineSettingsBuilder);
         MultiLineReportBuilder2 multiLineReportBuilder = new MultiLineReportBuilder2();
+        CorrectionWidthSpeaker correction = new CorrectionWidthSpeaker();
+        correction.correctionWidth(multiLineSettingsBuilder, multiLineFormatSetting);
         multiLineReportBuilder.saveReport(multiLineFormatSetting, multiLineSettingsBuilder);
     }
 

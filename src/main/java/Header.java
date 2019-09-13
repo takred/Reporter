@@ -21,7 +21,4 @@ public class Header {
     public void setWidthSpeaker(int maxWidth){
         widthSpeaker = maxWidth;
     }
-    public void addWidthSpeaker(int width){
-        widthSpeaker = width;
-    }
 }
