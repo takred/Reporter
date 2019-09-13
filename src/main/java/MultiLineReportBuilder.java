@@ -10,22 +10,22 @@ public class MultiLineReportBuilder {
         OutputStream outputStream = new FileOutputStream("multiLineReport.txt");
         PrintWriter writer = new PrintWriter(outputStream);
         List<Integer> maxLengthBorder = maxLengthElements(listCell);
-        for (int i = 0; i < category.getHeader().getName().size(); i++) {
-            writer.print("| " + category.getHeader().getName().get(i) + " ");
-            if (category.getHeader().getName().get(i).length() < category.getHeader().getWidthSpeaker().get(i)) {
-                for (int j = 0; j < category.getHeader().getWidthSpeaker().get(i) - category.getHeader().getName().get(i).length(); j++) {
+        for (int i = 0; i < category.getHeader().size(); i++) {
+            writer.print("| " + category.getHeader().get(i).getName() + " ");
+            if (category.getHeader().get(i).getName().length() < category.getHeader().get(i).getWidthSpeaker()) {
+                for (int j = 0; j < category.getHeader().get(i).getWidthSpeaker() - category.getHeader().get(i).getName().length(); j++) {
                     writer.print(" ");
                 }
             }
-            if (i == category.getHeader().getName().size() - 1) {
+            if (i == category.getHeader().size() - 1) {
                 writer.print("|");
                 writer.println();
             }
         }
 
-        for (int j = 0; j < category.getHeader().getName().size(); j++) {
+        for (int j = 0; j < category.getHeader().size(); j++) {
             writer.print("|-");
-            for (int k = 0; k < category.getHeader().getWidthSpeaker().get(j) + 1; k++) {
+            for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() + 1; k++) {
                 writer.print("-");
             }
         }
@@ -44,20 +44,20 @@ public class MultiLineReportBuilder {
 //                    System.out.println(hyphenation.get(l).getCell().value);
 //                    System.out.println(hyphenation.get(l).getCell().name);
 //                }
-                if (listCell.get(i).get(j).value.length() > category.getHeader().getWidthSpeaker().get(j)) {
-                    writer.print("| " + listCell.get(i).get(j).value.substring(0, category.getHeader().getWidthSpeaker().get(j)) + " ");
-                    hyphenation.get(j).setCellValue(listCell.get(i).get(j).value.substring(category.getHeader().getWidthSpeaker().get(j)));
+                if (listCell.get(i).get(j).value.length() > category.getHeader().get(j).getWidthSpeaker()) {
+                    writer.print("| " + listCell.get(i).get(j).value.substring(0, category.getHeader().get(j).getWidthSpeaker()) + " ");
+                    hyphenation.get(j).setCellValue(listCell.get(i).get(j).value.substring(category.getHeader().get(j).getWidthSpeaker()));
                     hyphenation.get(j).setCounter(1);
                 } else {
                     writer.print("| " + listCell.get(i).get(j).value + " ");
                 }
-                if (category.getHeader().getWidthSpeaker().get(j) > listCell.get(i).get(j).value.length()) {
-                    for (int k = 0; k < category.getHeader().getWidthSpeaker().get(j) - listCell.get(i).get(j).value.length(); k++) {
+                if (category.getHeader().get(j).getWidthSpeaker() > listCell.get(i).get(j).value.length()) {
+                    for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - listCell.get(i).get(j).value.length(); k++) {
                         writer.print(" ");
                     }
                 }
-                if (category.getHeader().getName().get(j).length() < category.getHeader().getWidthSpeaker().get(j)) {
-                    for (int k = 0; k < category.getHeader().getWidthSpeaker().get(j) - listCell.get(i).get(j).value.length(); k++) {
+                if (category.getHeader().get(j).getName().length() < category.getHeader().get(j).getWidthSpeaker()) {
+                    for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - listCell.get(i).get(j).value.length(); k++) {
                         writer.print(" ");
                     }
                 }
@@ -96,9 +96,9 @@ public class MultiLineReportBuilder {
             }
             writer.print("|");
             writer.println();
-            for (int j = 0; j < category.getHeader().getName().size(); j++) {
+            for (int j = 0; j < category.getHeader().size(); j++) {
                 writer.print("|-");
-                for (int k = 0; k < category.getHeader().getWidthSpeaker().get(j) + 1; k++) {
+                for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() + 1; k++) {
                     writer.print("-");
                 }
             }

@@ -26,11 +26,11 @@ public class MainTwo {
         List<List<Cell>> formatSettings = new ArrayList<>();
         for (int i = 1; i < dataBuilder.categoryList.size(); i++) {
             List<Cell> templateListCell = new ArrayList<>();
-            for (int k = 0; k < settingsBuilder.getHeader().getName().size(); k++) {
+            for (int k = 0; k < settingsBuilder.getHeader().size(); k++) {
                 for (int j = 0; j < dataBuilder.categoryList.get(i).size(); j++) {
-                    if (settingsBuilder.getHeader().getName().get(k).equals(dataBuilder.categoryList.get(0).get(j)) &&
-                            templateListCell.size() < settingsBuilder.getHeader().getName().size()) {
-                        templateListCell.add(new Cell(settingsBuilder.getHeader().getName().get(k), dataBuilder.categoryList.get(i).get(j)));
+                    if (settingsBuilder.getHeader().get(k).getName().equals(dataBuilder.categoryList.get(0).get(j)) &&
+                            templateListCell.size() < settingsBuilder.getHeader().size()) {
+                        templateListCell.add(new Cell(settingsBuilder.getHeader().get(k).getName(), dataBuilder.categoryList.get(i).get(j)));
                         break;
                     }
                 }

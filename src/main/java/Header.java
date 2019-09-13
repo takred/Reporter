@@ -2,19 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Header {
-    private List<String> name = new ArrayList<>();
-    private List<Integer> widthSpeaker = new ArrayList<>();
-
-    public List<String> getName(){
+    private String name;
+    private int widthSpeaker;
+    public Header(String name, int widthSpeaker){
+        this.name = name;
+        this.widthSpeaker = widthSpeaker;
+    }
+    public Header(){}
+    public String getName(){
         return name;
     }
     public void addName(String string){
-        name.add(string);
+        name = string;
     }
-    public List<Integer> getWidthSpeaker(){
+    public Integer getWidthSpeaker(){
         return widthSpeaker;
     }
-    public void addWidthSpeaker(Integer integer){
-        widthSpeaker.add(integer);
+    public void setWidthSpeaker(int maxWidth){
+        widthSpeaker = maxWidth;
+    }
+    public void addWidthSpeaker(int width){
+        widthSpeaker = width;
     }
 }

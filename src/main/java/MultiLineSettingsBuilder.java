@@ -1,9 +1,10 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MultiLineSettingsBuilder {
-    private Header header = new Header();
+    private List<Header> header = new ArrayList<>();
 
     public MultiLineSettingsBuilder(String fileName) throws IOException {
         File file = new File(fileName);
@@ -15,14 +16,18 @@ public class MultiLineSettingsBuilder {
             BufferedReader bufferedReader = new BufferedReader(reader);
             List<String> strings = bufferedReader.lines().collect(Collectors.toList());
             for (int i = 0; i < strings.size(); i++) {
-                getHeader().addName(strings.get(i).substring(0, strings.get(i).indexOf(";")));
-                getHeader().addWidthSpeaker(Integer.valueOf(strings.get(i).substring(strings.get(i).indexOf(";") + 1)));
+                String name = strings.get(i).substring(0, strings.get(i).indexOf(";"));
+                int width = Integer.valueOf(strings.get(i).substring(strings.get(i).indexOf(";") + 1));
+                header.add(new Header(name, width));
                 inputStream.close();
             }
         }
     }
 
-    public Header getHeader() {
+    public List<Header> getHeader() {
         return header;
     }
+//    public void setWidthSpeaker(int maxWidth, int index){
+//        header.get(index).getWidthSpeaker() = maxWidth;
+//    }
 }

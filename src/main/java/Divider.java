@@ -7,13 +7,13 @@ public class Divider {
         int counterIteration = 0;
         List<Cell> copyMultiLineCells = multiLineCells;
         for (int i = 0; i < copyMultiLineCells.size(); i++) {
-            if (copyMultiLineCells.get(i).value.length() >= category.getHeader().getWidthSpeaker().get(i) &&
+            if (copyMultiLineCells.get(i).value.length() >= category.getHeader().get(i).getWidthSpeaker() &&
                     counterIteration <= copyMultiLineCells.get(i).value.length() /
-                            category.getHeader().getWidthSpeaker().get(i)) {
-                if (copyMultiLineCells.get(i).value.length() % category.getHeader().getWidthSpeaker().get(i) > 0) {
-                    counterIteration = (copyMultiLineCells.get(i).value.length() / category.getHeader().getWidthSpeaker().get(i)) + 1;
+                            category.getHeader().get(i).getWidthSpeaker()) {
+                if (copyMultiLineCells.get(i).value.length() % category.getHeader().get(i).getWidthSpeaker() > 0) {
+                    counterIteration = (copyMultiLineCells.get(i).value.length() / category.getHeader().get(i).getWidthSpeaker()) + 1;
                 } else {
-                    counterIteration = copyMultiLineCells.get(i).value.length() / category.getHeader().getWidthSpeaker().get(i);
+                    counterIteration = copyMultiLineCells.get(i).value.length() / category.getHeader().get(i).getWidthSpeaker();
                 }
             }
         }
@@ -23,18 +23,18 @@ public class Divider {
         for (int c = 0; c < counterIteration; c++) {
             String savePiece = "";
             for (int j = 0; j < copyMultiLineCells.size(); j++) {
-                if (copyMultiLineCells.get(j).value.length() > category.getHeader().getWidthSpeaker().get(j)) {
-                    savePiece = savePiece + "| " + copyMultiLineCells.get(j).value.substring(0, category.getHeader().getWidthSpeaker().get(j)) + " ";
-                    if (category.getHeader().getName().get(j).length() < category.getHeader().getWidthSpeaker().get(j)) {
-                        for (int k = 0; k < category.getHeader().getWidthSpeaker().get(j) - copyMultiLineCells.get(j).value.length(); k++) {
+                if (copyMultiLineCells.get(j).value.length() > category.getHeader().get(j).getWidthSpeaker()) {
+                    savePiece = savePiece + "| " + copyMultiLineCells.get(j).value.substring(0, category.getHeader().get(j).getWidthSpeaker()) + " ";
+                    if (category.getHeader().get(j).getName().length() < category.getHeader().get(j).getWidthSpeaker()) {
+                        for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - copyMultiLineCells.get(j).value.length(); k++) {
                             savePiece = savePiece + " ";
                         }
                     }
-                    copyMultiLineCells.get(j).value = copyMultiLineCells.get(j).value.substring(category.getHeader().getWidthSpeaker().get(j));
+                    copyMultiLineCells.get(j).value = copyMultiLineCells.get(j).value.substring(category.getHeader().get(j).getWidthSpeaker());
                 } else {
                     savePiece = savePiece + "| " + copyMultiLineCells.get(j).value + " ";
-                    if (copyMultiLineCells.get(j).value.length() < category.getHeader().getWidthSpeaker().get(j)) {
-                        for (int k = 0; k < category.getHeader().getWidthSpeaker().get(j) - copyMultiLineCells.get(j).value.length(); k++) {
+                    if (copyMultiLineCells.get(j).value.length() < category.getHeader().get(j).getWidthSpeaker()) {
+                        for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - copyMultiLineCells.get(j).value.length(); k++) {
                             savePiece = savePiece + " ";
                         }
                     }
