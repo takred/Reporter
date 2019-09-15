@@ -19,7 +19,7 @@ public class ReportBuilder {
         }
         for (int i = 0; i < listA.size(); i++) {
             for (int j = 0; j < listA.get(i).size(); j++) {
-                writer.print(listA.get(i).get(j).value);
+                writer.print(listA.get(i).get(j).getValue());
                 if (j != listA.size() - 1) {
                     writer.print(";");
                 }

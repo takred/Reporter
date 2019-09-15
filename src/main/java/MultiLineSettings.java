@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MultiLineSettingsBuilder {
+public class MultiLineSettings {
     private List<Header> header = new ArrayList<>();
 
-    public MultiLineSettingsBuilder(String fileName) throws IOException {
+    public MultiLineSettings(String fileName) throws IOException {
         File file = new File(fileName);
         if (!file.exists()) {
             System.out.println("no");

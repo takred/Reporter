@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MultiLineReportBuilder2 {
-    public void saveReport(List<List<Cell>> listCell, MultiLineSettingsBuilder category) throws FileNotFoundException {
-        OutputStream outputStream = new FileOutputStream("multiLineReport.txt");
+    public void save(List<List<Cell>> listCell, MultiLineSettings category, String fileName) throws FileNotFoundException {
+        OutputStream outputStream = new FileOutputStream(fileName);
         PrintWriter writer = new PrintWriter(outputStream);
         List<Integer> maxLengthBorder = maxLengthElements(listCell);
         for (int i = 0; i < category.getHeader().size(); i++) {
@@ -66,8 +66,8 @@ public class MultiLineReportBuilder2 {
         for (int i = 0; i < listCell.get(0).size(); i++) {
             Integer count = 0;
             for (int j = 0; j < listCell.size(); j++) {
-                if (count < listCell.get(j).get(i).value.length()) {
-                    count = listCell.get(j).get(i).value.length();
+                if (count < listCell.get(j).get(i).getValue().length()) {
+                    count = listCell.get(j).get(i).getValue().length();
                 }
             }
             maxLength.add(count);

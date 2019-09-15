@@ -22,7 +22,7 @@ public class MainTwo {
         return formatSettings;
     }
 
-    private static List<List<Cell>> getMultiLineLists(DataBuilder dataBuilder, MultiLineSettingsBuilder settingsBuilder) {
+    private static List<List<Cell>> getMultiLineLists(DataBuilder dataBuilder, MultiLineSettings settingsBuilder) {
         List<List<Cell>> formatSettings = new ArrayList<>();
         for (int i = 1; i < dataBuilder.categoryList.size(); i++) {
             List<Cell> templateListCell = new ArrayList<>();
@@ -57,10 +57,10 @@ public class MainTwo {
         SettingsBuilder settingsBuilder = new SettingsBuilder("settings.csv");
         List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
 //        reportBuilder.saveReport(formatSettings, strings);
-        MultiLineSettingsBuilder multiLineSettingsBuilder = new MultiLineSettingsBuilder("settings.csv");
-        List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder, multiLineSettingsBuilder);
+        MultiLineSettings multiLineSettings = new MultiLineSettings("settings.csv");
+        List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder, multiLineSettings);
         Divider divider = new Divider();
-        List<String> listStrings = divider.getWriteString(multiLineFormatSetting.get(1), multiLineSettingsBuilder);
+        List<String> listStrings = divider.getWriteString(multiLineFormatSetting.get(1), multiLineSettings);
         for (int i = 0; i < listStrings.size(); i++) {
             System.out.println(listStrings.get(i));
         }

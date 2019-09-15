@@ -23,12 +23,12 @@ public class Main {
         List<List<Cell>> formatSettings = getLists(dataBuilder, settingsBuilder);
 //        reportBuilder.saveReport(formatSettings, strings);
 //        newReportBuilder.saveReport(formatSettings, strings);
-        MultiLineSettingsBuilder multiLineSettingsBuilder = new MultiLineSettingsBuilder("settings.csv");
-        List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder,multiLineSettingsBuilder);
+        MultiLineSettings multiLineSettings = new MultiLineSettings("settings.csv");
+        List<List<Cell>> multiLineFormatSetting = getMultiLineLists(dataBuilder,multiLineSettings);
         MultiLineReportBuilder2 multiLineReportBuilder = new MultiLineReportBuilder2();
         CorrectionWidthSpeaker correction = new CorrectionWidthSpeaker();
-        correction.correctionWidth(multiLineSettingsBuilder, multiLineFormatSetting);
-        multiLineReportBuilder.saveReport(multiLineFormatSetting, multiLineSettingsBuilder);
+//        correction.correctionWidth(multiLineSettings, multiLineFormatSetting);
+        multiLineReportBuilder.save(multiLineFormatSetting, correction.correctionWidth(multiLineSettings, multiLineFormatSetting), "multiLineReport.txt");
     }
 
 
@@ -50,7 +50,7 @@ public class Main {
         return formatSettings;
     }
 
-    private static List<List<Cell>> getMultiLineLists(DataBuilder dataBuilder, MultiLineSettingsBuilder settingsBuilder) {
+    private static List<List<Cell>> getMultiLineLists(DataBuilder dataBuilder, MultiLineSettings settingsBuilder) {
         List<List<Cell>> formatSettings = new ArrayList<>();
         for (int i = 1; i < dataBuilder.categoryList.size(); i++) {
             List<Cell> templateListCell = new ArrayList<>();

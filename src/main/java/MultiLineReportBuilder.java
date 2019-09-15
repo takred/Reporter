@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MultiLineReportBuilder {
-    public void saveReport(List<List<Cell>> listCell, MultiLineSettingsBuilder category) throws FileNotFoundException {
+    public void saveReport(List<List<Cell>> listCell, MultiLineSettings category) throws FileNotFoundException {
         OutputStream outputStream = new FileOutputStream("multiLineReport.txt");
         PrintWriter writer = new PrintWriter(outputStream);
         List<Integer> maxLengthBorder = maxLengthElements(listCell);
@@ -44,20 +44,20 @@ public class MultiLineReportBuilder {
 //                    System.out.println(hyphenation.get(l).getCell().value);
 //                    System.out.println(hyphenation.get(l).getCell().name);
 //                }
-                if (listCell.get(i).get(j).value.length() > category.getHeader().get(j).getWidthSpeaker()) {
-                    writer.print("| " + listCell.get(i).get(j).value.substring(0, category.getHeader().get(j).getWidthSpeaker()) + " ");
-                    hyphenation.get(j).setCellValue(listCell.get(i).get(j).value.substring(category.getHeader().get(j).getWidthSpeaker()));
+                if (listCell.get(i).get(j).getValue().length() > category.getHeader().get(j).getWidthSpeaker()) {
+                    writer.print("| " + listCell.get(i).get(j).getValue().substring(0, category.getHeader().get(j).getWidthSpeaker()) + " ");
+                    hyphenation.get(j).setCellValue(listCell.get(i).get(j).getValue().substring(category.getHeader().get(j).getWidthSpeaker()));
                     hyphenation.get(j).setCounter(1);
                 } else {
-                    writer.print("| " + listCell.get(i).get(j).value + " ");
+                    writer.print("| " + listCell.get(i).get(j).getValue() + " ");
                 }
-                if (category.getHeader().get(j).getWidthSpeaker() > listCell.get(i).get(j).value.length()) {
-                    for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - listCell.get(i).get(j).value.length(); k++) {
+                if (category.getHeader().get(j).getWidthSpeaker() > listCell.get(i).get(j).getValue().length()) {
+                    for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - listCell.get(i).get(j).getValue().length(); k++) {
                         writer.print(" ");
                     }
                 }
                 if (category.getHeader().get(j).getName().length() < category.getHeader().get(j).getWidthSpeaker()) {
-                    for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - listCell.get(i).get(j).value.length(); k++) {
+                    for (int k = 0; k < category.getHeader().get(j).getWidthSpeaker() - listCell.get(i).get(j).getValue().length(); k++) {
                         writer.print(" ");
                     }
                 }
@@ -113,8 +113,8 @@ public class MultiLineReportBuilder {
         for (int i = 0; i < listCell.get(0).size(); i++) {
             Integer count = 0;
             for (int j = 0; j < listCell.size(); j++) {
-                if (count < listCell.get(j).get(i).value.length()) {
-                    count = listCell.get(j).get(i).value.length();
+                if (count < listCell.get(j).get(i).getValue().length()) {
+                    count = listCell.get(j).get(i).getValue().length();
                 }
             }
             maxLength.add(count);

@@ -14,6 +14,6 @@ public class MultiLineCell {
         return cell;
     }
     public void setCellValue(String value){
-        cell.value = value;
+        cell.setValue(value);
     }
 }

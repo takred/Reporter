@@ -34,9 +34,9 @@ public class NewReportBuilder {
 
         for (int i = 0; i < listCell.size(); i++) {
             for (int j = 0; j < listCell.get(i).size(); j++) {
-                writer.print("| " + listCell.get(i).get(j).value + " ");
+                writer.print("| " + listCell.get(i).get(j).getValue() + " ");
                 if (category.get(j).length() < maxLengthBorder.get(j)) {
-                    for (int k = 0; k < maxLengthBorder.get(j) - listCell.get(i).get(j).value.length(); k++) {
+                    for (int k = 0; k < maxLengthBorder.get(j) - listCell.get(i).get(j).getValue().length(); k++) {
                         writer.print(" ");
                     }
                 }
@@ -59,8 +59,8 @@ public class NewReportBuilder {
         for (int i = 0; i < listCell.get(0).size(); i++) {
             Integer count = 0;
             for (int j = 0; j < listCell.size(); j++) {
-                if (count < listCell.get(j).get(i).value.length()) {
-                    count = listCell.get(j).get(i).value.length();
+                if (count < listCell.get(j).get(i).getValue().length()) {
+                    count = listCell.get(j).get(i).getValue().length();
                 }
             }
             maxLength.add(count);
