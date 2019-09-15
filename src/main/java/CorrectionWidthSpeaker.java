@@ -4,7 +4,7 @@ import java.util.List;
 public class CorrectionWidthSpeaker {
     public MultiLineSettings correctionWidth(MultiLineSettings multiLineSettings, List<List<Cell>> multiLineFormatSettings){
         List<Integer> maxLength = maxLengthElements(multiLineFormatSettings);
-        MultiLineSettings newMultiLineSettings = multiLineSettings;
+        MultiLineSettings newMultiLineSettings = new MultiLineSettings(multiLineSettings);
         for (int i = 0; i < newMultiLineSettings.getHeader().size(); i++) {
             if (newMultiLineSettings.getHeader().get(i).getWidthSpeaker() > maxLength.get(i)){
                 newMultiLineSettings.getHeader().get(i).setWidthSpeaker(maxLength.get(i));

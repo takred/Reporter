@@ -23,6 +23,11 @@ public class MultiLineSettings {
             }
         }
     }
+    public MultiLineSettings(MultiLineSettings multiLineSettings){
+        for (int i = 0; i < multiLineSettings.getHeader().size(); i++) {
+            header.add(multiLineSettings.getHeader().get(i));
+        }
+    }
 
     public List<Header> getHeader() {
         return header;
