@@ -24,8 +24,11 @@ public class MultiLineSettings {
         }
     }
     public MultiLineSettings(MultiLineSettings multiLineSettings){
+
         for (int i = 0; i < multiLineSettings.getHeader().size(); i++) {
-            header.add(multiLineSettings.getHeader().get(i));
+            Header header = multiLineSettings.getHeader().get(i);
+            this.header.add (new Header(header.getName(),
+                    header.getWidthSpeaker()));
         }
     }
 
